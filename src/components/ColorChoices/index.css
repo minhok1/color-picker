@@ -1,12 +1,20 @@
 .colorChoices {
-	margin-top: 10px;
-	display: flex;
-	flex-direction: row;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 400px;
 }
 
 .colorChoiceBox {
-	height: 20px;
-	width: 20px;
-	background-color: grey;
-	margin: 2px;
+  width: 24%;
+  height: 50px;
+  background-color: grey;
+  margin: 2px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.active {
+  border: 2px solid black;
 }

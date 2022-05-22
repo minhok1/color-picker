@@ -1,14 +1,13 @@
-import React from 'react';
-import './index.css';
+import React from "react";
+import "./index.css";
 
-/* placeholder, use or delete! */
-
-const ColorBox = () => {
-	return (
-		<div className="colorBox">
-
-		</div>
-	);
-}
+const ColorBox = (props) => {
+  return (
+    <div
+      style={{ backgroundColor: props.selectedColor }}
+      className="colorBox"
+    ></div>
+  );
+};
 
 export default ColorBox;

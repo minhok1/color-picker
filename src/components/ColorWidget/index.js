@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import './index.css';
-import ColorBox from '../ColorBox';
-import { fetchColors } from '../../api';
-import ColorChoices from '../ColorChoices';
+import React, { useState, useEffect } from "react";
+import "./index.css";
+import ColorBox from "../ColorBox";
+import { fetchColors } from "../../api";
+import ColorChoices from "../ColorChoices";
 
 const ColorWidget = (props) => {
-
-    /* Diversio's front end uses react-redux and redux-saga to
+  /* Diversio's front end uses react-redux and redux-saga to
     manage fetching data from the backend API, placing it into
     the redux store, and making it available to appropriate components.
 
@@ -26,32 +25,30 @@ const ColorWidget = (props) => {
     If you are not comfortable with any of the above, 
     you are welcome to leave this Promise here as is.
     */
-    // START OF DATA FETCHING CODE
-    const [ colors, setColors ] = useState(null);
+  // START OF DATA FETCHING CODE
+  const [colors, setColors] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
 
+  useEffect(() => {
     fetchColors
-        .then((res) => {
-            setColors(res);
-        })
-        .catch(
-        (e) => {
-            console.log(e);
-        }
-    )
-    // END OF DATA FETCHING CODE 
+      .then((res) => {
+        setColors(res);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
+  // END OF DATA FETCHING CODE
 
-    return (
-        <div className="color-widget">
-            <div className="color-widget-title">
-                <h2>I am a placeholder, change this file or delete it entirely and start over</h2>
-            </div>
-            <ColorBox/>
-            <ColorChoices/>
-            <div>
-                {JSON.stringify(colors)}
-            </div>
-        </div> 
-    );
-}
+  return (
+    <div className="color-widget">
+      <div className="color-widget-title">
+        <h2>Color picker Widget</h2>
+      </div>
+      <ColorBox selectedColor={selectedColor} />
+      <ColorChoices colors={colors} setSelectedColor={setSelectedColor} />
+    </div>
+  );
+};
 
 export default ColorWidget;

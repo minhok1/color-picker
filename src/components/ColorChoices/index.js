@@ -1,19 +1,24 @@
-import React from 'react';
-import './index.css';
+import React, { useState } from "react";
+import "./index.css";
 
-/* placeholder, use or delete! */
-
-const ColorChoices = () => {
-	return (
-		<div className="colorChoices">
-			<div className="colorChoiceBox"></div>
-			<div className="colorChoiceBox"></div>
-			<div className="colorChoiceBox"></div>
-			<div className="colorChoiceBox"></div>
-			<div className="colorChoiceBox"></div>
-			<div className="colorChoiceBox"></div>
-		</div>
-	);
-}
+const ColorChoices = (props) => {
+  const [activeIndex, setActiveIndex] = useState(null);
+  return (
+    <div className="colorChoices">
+      {props.colors &&
+        props.colors.data.colorChoices.map((color, i) => (
+          <div
+            key={color}
+            style={{ backgroundColor: color }}
+            className={`colorChoiceBox${i === activeIndex ? " active" : ""}`}
+            onClick={() => {
+              props.setSelectedColor(color);
+              setActiveIndex(i);
+            }}
+          ></div>
+        ))}
+    </div>
+  );
+};
 
 export default ColorChoices;
